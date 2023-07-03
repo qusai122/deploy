@@ -1,7 +1,6 @@
 {
   "name": "src",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,8 +8,8 @@
     "dev": "nodemon --exec ts-node --files src/index.ts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Qusai & muhammad",
+  "license": "MIT",
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
@@ -34,5 +33,14 @@
     "nodemon": "^1.14.9",
     "prettier": "^2.8.8",
     "typescript": "^5.1.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JSD-0423/backend-final-3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JSD-0423/backend-final-3/issues"
+  },
+  "homepage": "https://github.com/JSD-0423/backend-final-3#readme",
+  "description": ""
 }
