@@ -1,3 +1,4 @@
+import { HasOne } from 'sequelize';
 import {
   Table,
   Model,
@@ -43,6 +44,7 @@ export class Product extends Model {
   @BelongsTo(() => Category)
   category!: Category;
 
+  //todo
   @Column({
     type: DataType.NUMBER,
     allowNull: true,

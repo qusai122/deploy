@@ -5,7 +5,10 @@ import {
   DataType,
   ForeignKey,
   BelongsTo,
+  HasMany,
+  BelongsToMany,
 } from 'sequelize-typescript';
+import { Product } from './Product';
 
 @Table({
   timestamps: false,
@@ -29,4 +32,13 @@ export class Brand extends Model {
     allowNull: true,
   })
   img!: string;
+
+  @Column({
+    type: DataType.NUMBER,
+    allowNull: true,
+    unique: true,
+  })
+  product_id!: string;
+  @HasMany(() => Product)
+  products!: Product[];
 }
