@@ -36,37 +36,18 @@ export class Product extends Model {
   })
   price!: number;
 
-  @Column({
-    type: DataType.NUMBER,
-    allowNull: true,
-  })
-  category_id!: number;
-  @BelongsTo(() => Category)
+  @BelongsTo(() => Category, 'category_id')
   category!: Category;
 
   //todo
-  @Column({
-    type: DataType.NUMBER,
-    allowNull: true,
-  })
-  rating_id!: Rating;
-  @BelongsTo(() => Rating)
+
+  @BelongsTo(() => Rating, 'rating_id')
   rating!: Rating;
 
-  @Column({
-    type: DataType.NUMBER,
-    allowNull: true,
-  })
-  brand_id!: Brand;
-  @BelongsTo(() => Brand)
+  @BelongsTo(() => Brand, 'brand_id')
   brand!: Brand;
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  colors_id!: string;
-  @HasMany(() => Color)
+  @HasMany(() => Color, 'colors_id')
   colors!: Color[];
 
   @Column({

@@ -33,12 +33,6 @@ export class Category extends Model {
   })
   img!: string;
 
-  @Column({
-    type: DataType.NUMBER,
-    allowNull: true,
-    unique: true,
-  })
-  product_id!: string;
-  @HasMany(() => Product)
+  @HasMany(() => Product, 'product_id')
   products!: Product[];
 }
