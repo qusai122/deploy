@@ -9,7 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { Brand } from './Brand';
 import { Category } from './Category';
-import { Color } from './Color';
+import { Color } from './Colors';
 import { Rating } from './Rating';
 
 @Table({
