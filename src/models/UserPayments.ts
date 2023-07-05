@@ -26,4 +26,16 @@ export class UserPayment extends Model {
     allowNull: false,
   })
   expiry!: Date;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: true,
+  })
+  is_default!: boolean;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  provider!: string;
 }

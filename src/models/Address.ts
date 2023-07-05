@@ -48,6 +48,12 @@ export class Address extends Model {
   })
   pin_code!: string;
 
+  @Column({
+    type: DataType.BOOLEAN,
+    allowNull: true,
+  })
+  is_default!: boolean;
+
   @BelongsTo(() => User, 'user_id')
   user!: User;
 }
