@@ -12,7 +12,6 @@ import {
 import { Brand } from './Brand';
 import { Category } from './Category';
 import { Color } from './Colors';
-import { Favorite } from './Favourite';
 import { ProductImage } from './ProductsImage';
 import { Rating } from './Rating';
 

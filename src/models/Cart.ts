@@ -10,12 +10,12 @@ import { Product } from './Product';
 import { User } from './User';
 
 @Table({
-  timestamps: false,
+  timestamps: true,
   tableName: 'carts',
 })
 export class Cart extends Model {
   @BelongsTo(() => User, 'user_id')
-  product!: User;
+  user!: User;
 
   @HasMany(() => Product, 'products')
   products!: Product[];
