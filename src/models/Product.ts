@@ -11,6 +11,7 @@ import {
 import { Brand } from './Brand';
 import { Category } from './Category';
 import { Color } from './Colors';
+import { ProductImage } from './ProductsImage';
 import { Rating } from './Rating';
 
 @Table({
@@ -50,21 +51,6 @@ export class Product extends Model {
   @HasMany(() => Color, 'colors_id')
   colors!: Color[];
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  image1!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  image2!: string;
-
-  @Column({
-    type: DataType.STRING,
-    allowNull: true,
-  })
-  image3!: string;
+  @HasMany(() => ProductImage, 'images_id')
+  images!: ProductImage[];
 }

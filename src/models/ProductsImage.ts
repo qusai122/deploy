@@ -10,20 +10,20 @@ import { Product } from './Product';
 
 @Table({
   timestamps: false,
-  tableName: 'colors',
+  tableName: 'product_images',
 })
-export class Color extends Model {
+export class ProductImage extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  name!: string;
+  src!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  value!: string;
+  alt!: string;
 
   @BelongsTo(() => Product, 'product_id')
   product!: Product;
