@@ -30,6 +30,12 @@ export class Product extends Model {
     type: DataType.STRING,
     allowNull: false,
   })
+  tittle!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
   description!: string;
 
   @Column({
@@ -37,6 +43,18 @@ export class Product extends Model {
     allowNull: false,
   })
   price!: number;
+
+  @Column({
+    type: DataType.NUMBER,
+    allowNull: false,
+  })
+  quantity!: number;
+
+  @Column({
+    type: DataType.NUMBER,
+    allowNull: false,
+  })
+  discount!: number;
 
   @BelongsTo(() => Category, 'category_id')
   category!: Category;
