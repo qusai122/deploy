@@ -10,9 +10,7 @@ import {
 import { Address } from './Address';
 import { Cart } from './Cart';
 import { FavoriteList } from './FavoriteList';
-import { Rating } from './Rating';
 import { UserOrder } from './UserOrder';
-import { UserPayment } from './UserPayments';
 
 @Table({
   timestamps: true,
@@ -49,15 +47,9 @@ export class User extends Model {
   @HasMany(() => UserOrder, 'user_order')
   user_orders!: UserOrder;
 
-  @HasMany(() => Rating, 'ratings')
-  ratings!: Rating;
-
   @HasMany(() => Address, 'addresses')
   addresses!: Address;
 
   @HasOne(() => FavoriteList, 'favorite_list')
   favorite_list!: Cart;
-
-  @HasMany(() => UserPayment, 'user_payments')
-  user_payments!: UserPayment;
 }

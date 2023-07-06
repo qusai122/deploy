@@ -13,7 +13,6 @@ import { Brand } from './Brand';
 import { Category } from './Category';
 import { Color } from './Colors';
 import { ProductImage } from './ProductsImage';
-import { Rating } from './Rating';
 
 @Table({
   timestamps: true,
@@ -52,17 +51,18 @@ export class Product extends Model {
 
   @Column({
     type: DataType.NUMBER,
+    allowNull: true,
+  })
+  rating!: number;
+
+  @Column({
+    type: DataType.NUMBER,
     allowNull: false,
   })
   discount!: number;
 
   @BelongsTo(() => Category, 'category_id')
   category!: Category;
-
-  //todo
-
-  @BelongsTo(() => Rating, 'rating_id')
-  rating!: Rating;
 
   @BelongsTo(() => Brand, 'brand_id')
   brand!: Brand;
