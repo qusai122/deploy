@@ -6,6 +6,7 @@ import {
   BelongsTo,
   HasMany,
 } from 'sequelize-typescript';
+import { CartItem } from './CartItem';
 import { Product } from './Product';
 import { User } from './User';
 
@@ -17,8 +18,8 @@ export class Cart extends Model {
   @BelongsTo(() => User, 'user_id')
   user!: User;
 
-  @HasMany(() => Product, 'products')
-  products!: Product[];
+  @HasMany(() => CartItem, 'cart_items')
+  cart_items!: CartItem[];
 
   @Column({
     type: DataType.NUMBER,
