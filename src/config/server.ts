@@ -4,4 +4,8 @@ dotenv.config();
 
 const port = process.env.PORT;
 
-export { port };
+const config = () => {
+  return { port };
+};
+
+export default config;
