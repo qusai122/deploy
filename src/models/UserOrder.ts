@@ -1,5 +1,13 @@
-import { HasOne, Model, Table, Column, DataType } from 'sequelize-typescript';
+import {
+  HasOne,
+  Model,
+  Table,
+  Column,
+  DataType,
+  BelongsTo,
+} from 'sequelize-typescript';
 import { Cart } from './Cart';
+import { User } from './User';
 
 @Table({
   timestamps: true,
@@ -24,4 +32,7 @@ export class UserOrder extends Model {
     allowNull: false,
   })
   status!: string;
+
+  @BelongsTo(() => User, 'id')
+  user_id!: User;
 }

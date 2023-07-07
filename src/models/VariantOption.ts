@@ -3,16 +3,15 @@ import {
   Model,
   Column,
   DataType,
-  ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
-import { Product } from './Product';
+import { Variant } from './Variants';
 
 @Table({
   timestamps: false,
-  tableName: 'colors',
+  tableName: 'variant_options',
 })
-export class Color extends Model {
+export class VariantOption extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -25,6 +24,6 @@ export class Color extends Model {
   })
   value!: string;
 
-  @BelongsTo(() => Product, 'product_id')
-  product!: Product;
+  @BelongsTo(() => Variant, 'product_id')
+  product!: Variant;
 }

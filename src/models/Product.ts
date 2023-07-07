@@ -11,8 +11,8 @@ import {
 } from 'sequelize-typescript';
 import { Brand } from './Brand';
 import { Category } from './Category';
-import { Color } from './Colors';
 import { ProductImage } from './ProductsImage';
+import { Variant } from './Variants';
 
 @Table({
   timestamps: true,
@@ -67,8 +67,8 @@ export class Product extends Model {
   @BelongsTo(() => Brand, 'brand_id')
   brand!: Brand;
 
-  @HasMany(() => Color, 'colors_id')
-  colors!: Color[];
+  @HasMany(() => Variant, 'colors_id')
+  colors!: Variant[];
 
   @HasMany(() => ProductImage, 'images_id')
   images!: ProductImage[];
