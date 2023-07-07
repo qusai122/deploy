@@ -13,7 +13,7 @@ import { VariantOption } from './VariantOption';
   timestamps: false,
   tableName: 'variants',
 })
-export class Color extends Model {
+export class Variant extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
