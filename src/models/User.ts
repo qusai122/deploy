@@ -41,7 +41,8 @@ export class User extends Model {
   })
   email!: string;
 
-  @HasOne(() => Cart, 'cart_id')
+  //todo make sure if it works and check the other names
+  @HasOne(() => Cart)
   cart!: Cart;
 
   @HasMany(() => UserOrder, 'user_order')
