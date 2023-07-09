@@ -24,6 +24,6 @@ export class VariantOption extends Model {
   })
   value!: string;
 
-  @BelongsTo(() => Variant, 'product_id')
+  @BelongsTo(() => Variant, 'variant_id')
   product!: Variant;
 }

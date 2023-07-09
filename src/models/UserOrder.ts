@@ -5,6 +5,7 @@ import {
   Column,
   DataType,
   BelongsTo,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { Cart } from './Cart';
 import { User } from './User';
@@ -14,9 +15,6 @@ import { User } from './User';
   tableName: 'user_orders',
 })
 export class UserOrder extends Model {
-  @HasOne(() => Cart, 'id')
-  cart_id!: Cart;
-
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -33,6 +31,21 @@ export class UserOrder extends Model {
   })
   status!: string;
 
-  @BelongsTo(() => User, 'id')
-  user_id!: User;
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  user_id!: number;
+  @BelongsTo(() => User, 'user_id')
+  user!: User;
+
+  @ForeignKey(() => Cart)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  cart_id!: number;
+  @HasOne(() => Cart)
+  cart!: Cart;
 }

@@ -5,6 +5,7 @@ import {
   DataType,
   HasMany,
   BelongsTo,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { Product } from './Product';
 
@@ -30,11 +31,17 @@ export class Category extends Model {
     allowNull: true,
   })
   img!: string;
-
+  //todo
   //instead of creating sub category
-  @BelongsTo(() => Category, 'parent_category_id')
-  user!: Category;
+  //@BelongsTo(() => Category, 'parent_category_id')
+  //user!: Category;
+  @ForeignKey(() => Product)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  product_id!: number;
 
-  @HasMany(() => Product, 'product_id')
+  @HasMany(() => Product)
   products!: Product[];
 }

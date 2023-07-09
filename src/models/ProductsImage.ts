@@ -25,6 +25,12 @@ export class ProductImage extends Model {
   })
   alt!: string;
 
+  @ForeignKey(() => Product)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: true,
+  })
+  product_id!: number;
   @BelongsTo(() => Product, 'product_id')
   product!: Product;
 }

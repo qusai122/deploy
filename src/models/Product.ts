@@ -12,7 +12,6 @@ import {
 import { Brand } from './Brand';
 import { Category } from './Category';
 import { ProductImage } from './ProductsImage';
-import { Variant } from './Variants';
 
 @Table({
   timestamps: true,
@@ -38,38 +37,56 @@ export class Product extends Model {
   description!: string;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.DOUBLE,
     allowNull: false,
   })
   price!: number;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.INTEGER,
     allowNull: false,
   })
   quantity!: number;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.DOUBLE,
     allowNull: true,
   })
   rating!: number;
 
   @Column({
-    type: DataType.NUMBER,
+    type: DataType.DOUBLE,
     allowNull: false,
   })
   discount!: number;
 
+  @ForeignKey(() => Category)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  category_id!: number;
+
   @BelongsTo(() => Category, 'category_id')
   category!: Category;
+
+  @ForeignKey(() => Brand)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  brand_id!: number;
 
   @BelongsTo(() => Brand, 'brand_id')
   brand!: Brand;
 
-  @HasMany(() => Variant, 'colors_id')
-  colors!: Variant[];
+  @ForeignKey(() => ProductImage)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  images_id!: string;
 
-  @HasMany(() => ProductImage, 'images_id')
-  images!: ProductImage[];
+  @HasMany(() => ProductImage)
+  productImage!: ProductImage[];
 }

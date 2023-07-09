@@ -1,4 +1,12 @@
-import { Table, Model, BelongsTo, HasMany } from 'sequelize-typescript';
+import {
+  Table,
+  Model,
+  BelongsTo,
+  HasMany,
+  DataType,
+  Column,
+  ForeignKey,
+} from 'sequelize-typescript';
 import { Product } from './Product';
 import { User } from './User';
 
@@ -7,8 +15,22 @@ import { User } from './User';
   tableName: 'favorites',
 })
 export class FavoriteList extends Model {
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  user_id!: number;
+
   @BelongsTo(() => User, 'user_id')
   user!: User;
-  @HasMany(() => Product, 'products')
+
+  @ForeignKey(() => Product)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  product_id!: number;
+  @HasMany(() => Product)
   products!: Product[];
 }

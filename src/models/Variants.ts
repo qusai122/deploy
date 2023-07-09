@@ -5,6 +5,7 @@ import {
   DataType,
   BelongsTo,
   HasMany,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { Product } from './Product';
 import { VariantOption } from './VariantOption';
@@ -20,9 +21,13 @@ export class Variant extends Model {
   })
   name!: string;
 
-  @HasMany(() => VariantOption, 'variant_option_id')
-  variant_options!: VariantOption;
+  @ForeignKey(() => VariantOption)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  variant_option_id!: number;
 
-  @BelongsTo(() => Product, 'product_id')
-  product!: Product;
+  @HasMany(() => VariantOption)
+  variant_options!: VariantOption;
 }

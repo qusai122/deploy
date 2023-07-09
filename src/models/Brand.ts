@@ -4,9 +4,7 @@ import {
   Column,
   DataType,
   ForeignKey,
-  BelongsTo,
   HasMany,
-  BelongsToMany,
 } from 'sequelize-typescript';
 import { Product } from './Product';
 
@@ -33,6 +31,13 @@ export class Brand extends Model {
   })
   img!: string;
 
-  @HasMany(() => Product, 'product_id')
+  @ForeignKey(() => Product)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  product_id!: number;
+
+  @HasMany(() => Product)
   products!: Product[];
 }
