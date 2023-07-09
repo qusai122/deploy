@@ -6,42 +6,35 @@ import {
   BelongsTo,
   HasMany,
   ForeignKey,
+  HasOne,
 } from 'sequelize-typescript';
 import { CartItem } from './CartItem';
 import { Product } from './Product';
 import { User } from './User';
+import { UserOrder } from './UserOrder';
 
 @Table({
   timestamps: true,
   tableName: 'carts',
 })
 export class Cart extends Model {
-  @ForeignKey(() => User)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  userId!: number;
-  @BelongsTo(() => User)
+  @BelongsTo(() => User, 'user_id')
   user!: User;
 
-  @ForeignKey(() => CartItem)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  cart_item_id!: number;
-  @HasMany(() => CartItem)
+  @HasMany(() => CartItem, 'cart_id')
   cart_items!: CartItem[];
 
+  @HasOne(() => UserOrder, 'cart_id')
+  userOrder!: UserOrder[];
+
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.DOUBLE,
     allowNull: false,
   })
   sub_total!: number;
 
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.DOUBLE,
     allowNull: true,
     defaultValue: 0,
   })
@@ -55,8 +48,9 @@ export class Cart extends Model {
   delivery_fee!: number;
 
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.BOOLEAN,
     allowNull: false,
+    defaultValue: false,
   })
-  grand_total!: number;
+  is_ordered!: boolean;
 }

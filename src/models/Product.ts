@@ -10,8 +10,11 @@ import {
   BelongsToMany,
 } from 'sequelize-typescript';
 import { Brand } from './Brand';
+import { CartItem } from './CartItem';
 import { Category } from './Category';
+import { Favorite } from './Favorite';
 import { ProductImage } from './ProductsImage';
+import { ProductVariant } from './ProductVariant';
 
 @Table({
   timestamps: true,
@@ -60,33 +63,21 @@ export class Product extends Model {
   })
   discount!: number;
 
-  @ForeignKey(() => Category)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  category_id!: number;
-
   @BelongsTo(() => Category, 'category_id')
   category!: Category;
-
-  @ForeignKey(() => Brand)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  brand_id!: number;
 
   @BelongsTo(() => Brand, 'brand_id')
   brand!: Brand;
 
-  @ForeignKey(() => ProductImage)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  images_id!: string;
-
-  @HasMany(() => ProductImage)
+  @HasMany(() => ProductImage, 'product_id')
   productImage!: ProductImage[];
+
+  @HasMany(() => Favorite, 'product_id')
+  favorites!: Favorite[];
+
+  @HasMany(() => CartItem, 'product_id')
+  cartItem!: CartItem[];
+
+  @HasMany(() => ProductVariant, 'product_id')
+  productVariants!: ProductVariant[];
 }

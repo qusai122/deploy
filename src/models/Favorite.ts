@@ -14,23 +14,10 @@ import { User } from './User';
   timestamps: false,
   tableName: 'favorites',
 })
-export class FavoriteList extends Model {
-  @ForeignKey(() => User)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  user_id!: number;
-
+export class Favorite extends Model {
   @BelongsTo(() => User, 'user_id')
   user!: User;
 
-  @ForeignKey(() => Product)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  product_id!: number;
-  @HasMany(() => Product)
+  @BelongsTo(() => Product, 'product_id')
   products!: Product[];
 }

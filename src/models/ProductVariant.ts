@@ -4,27 +4,26 @@ import {
   Column,
   DataType,
   BelongsTo,
-  HasOne,
-  ForeignKey,
   HasMany,
+  ForeignKey,
 } from 'sequelize-typescript';
-import { Cart } from './Cart';
 import { Product } from './Product';
+import { Variant } from './Variant';
 
 @Table({
   timestamps: false,
-  tableName: 'cart_items',
+  tableName: 'product_variants',
 })
-export class CartItem extends Model {
-  @BelongsTo(() => Cart, 'cart_id')
-  cart!: Cart;
-
+export class ProductVariant extends Model {
   @BelongsTo(() => Product, 'product_id')
-  product!: Product;
+  cart!: Product;
 
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
-  quantity!: number;
+  available_variant_options!: number;
+
+  @HasMany(() => Variant, 'product_variant_id')
+  variants!: Variant[];
 }

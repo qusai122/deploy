@@ -31,13 +31,6 @@ export class Brand extends Model {
   })
   img!: string;
 
-  @ForeignKey(() => Product)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  product_id!: number;
-
-  @HasMany(() => Product)
+  @HasMany(() => Product, 'brand_id')
   products!: Product[];
 }

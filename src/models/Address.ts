@@ -4,7 +4,6 @@ import {
   Column,
   DataType,
   BelongsTo,
-  ForeignKey,
 } from 'sequelize-typescript';
 import { User } from './User';
 
@@ -51,16 +50,10 @@ export class Address extends Model {
 
   @Column({
     type: DataType.BOOLEAN,
-    allowNull: true,
+    allowNull: false,
+    defaultValue: false,
   })
   is_default!: boolean;
-
-  @ForeignKey(() => User)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  user_id!: number;
 
   @BelongsTo(() => User, 'user_id')
   user!: User;

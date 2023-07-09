@@ -28,24 +28,13 @@ export class UserOrder extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    defaultValue: 'ordered',
   })
   status!: string;
 
-  @ForeignKey(() => User)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  user_id!: number;
   @BelongsTo(() => User, 'user_id')
   user!: User;
 
-  @ForeignKey(() => Cart)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  cart_id!: number;
-  @HasOne(() => Cart)
-  cart!: Cart;
+  @BelongsTo(() => Cart, 'cart_id')
+  cart!: User;
 }

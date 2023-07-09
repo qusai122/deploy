@@ -10,7 +10,7 @@ import {
 } from 'sequelize-typescript';
 import { Address } from './Address';
 import { Cart } from './Cart';
-import { FavoriteList } from './FavoriteList';
+import { Favorite } from './Favorite';
 import { UserOrder } from './UserOrder';
 
 @Table({
@@ -42,49 +42,18 @@ export class User extends Model {
   })
   email!: string;
 
-  //todo make sure if it works and check the other names
-  @ForeignKey(() => Cart)
   @Column({
     type: DataType.INTEGER,
-    allowNull: true,
+    allowNull: false,
   })
-  product_id!: number;
+  current_cart_id!: number;
 
-  @ForeignKey(() => Cart)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  cart_id!: number;
-  @HasOne(() => Cart)
-  cart!: Cart;
+  @HasMany(() => Cart, 'user_id')
+  cart!: Cart[];
 
-  @ForeignKey(() => UserOrder)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  user_order!: number;
-  @HasMany(() => UserOrder)
+  @HasMany(() => UserOrder, 'user_id')
   user_orders!: UserOrder[];
 
-  @ForeignKey(() => UserOrder)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  address_id!: number;
-
-  @HasMany(() => Address, 'address_id')
+  @HasMany(() => Address, 'user_id')
   addresses!: Address[];
-
-  @ForeignKey(() => UserOrder)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: true,
-  })
-  favorite_list_id!: number;
-
-  @HasOne(() => FavoriteList, 'favorite_list_id')
-  favorite_list!: FavoriteList;
 }

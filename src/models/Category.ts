@@ -35,13 +35,7 @@ export class Category extends Model {
   //instead of creating sub category
   //@BelongsTo(() => Category, 'parent_category_id')
   //user!: Category;
-  @ForeignKey(() => Product)
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-  })
-  product_id!: number;
 
-  @HasMany(() => Product)
+  @HasMany(() => Product, 'category_id')
   products!: Product[];
 }

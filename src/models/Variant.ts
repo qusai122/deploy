@@ -5,13 +5,13 @@ import {
   DataType,
   BelongsTo,
 } from 'sequelize-typescript';
-import { Variant } from './Variants';
+import { ProductVariant } from './ProductVariant';
 
 @Table({
   timestamps: false,
-  tableName: 'variant_options',
+  tableName: 'variants',
 })
-export class VariantOption extends Model {
+export class Variant extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -24,6 +24,6 @@ export class VariantOption extends Model {
   })
   value!: string;
 
-  @BelongsTo(() => Variant, 'variant_id')
+  @BelongsTo(() => Variant, 'product_variant_id')
   product!: Variant;
 }
