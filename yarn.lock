@@ -109,6 +109,20 @@
     "@babel/helper-validator-identifier" "^7.22.5"
     to-fast-properties "^2.0.0"
 
+"@cloudinary/transformation-builder-sdk@^1.2.7":
+  version "1.2.9"
+  resolved "https://registry.npmjs.org/@cloudinary/transformation-builder-sdk/-/transformation-builder-sdk-1.2.9.tgz"
+  integrity sha512-qbLAfKhX4hy5tFPv4erpxdBT9x0GZgzDuMeDBIygqutNJTeB7lNuEZedf8X++0ZinkDccrJwXzDJty60MEfyHw==
+  dependencies:
+    "@cloudinary/url-gen" "^1.7.0"
+
+"@cloudinary/url-gen@^1.10.1", "@cloudinary/url-gen@^1.7.0":
+  version "1.10.1"
+  resolved "https://registry.npmjs.org/@cloudinary/url-gen/-/url-gen-1.10.1.tgz"
+  integrity sha512-6pBmapnL7G231NbNWhKbi+08HcpNASci7M3OmZWaUCQWUfdmo3au27HT3Zqg9NMsisfyer3t7o0RXzPQ4XlmMg==
+  dependencies:
+    "@cloudinary/transformation-builder-sdk" "^1.2.7"
+
 "@cspotcode/source-map-support@^0.8.0":
   version "0.8.1"
   resolved "https://registry.npmjs.org/@cspotcode/source-map-support/-/source-map-support-0.8.1.tgz"
@@ -973,6 +987,21 @@ cli-width@^3.0.0:
   resolved "https://registry.npmjs.org/cli-width/-/cli-width-3.0.0.tgz"
   integrity sha512-FxqpkPPwu1HjuN93Omfm4h8uIanXofW0RxVEW3k5RKx+mJJYSthzNhp32Kzxxy3YAEZ/Dc/EWN1vZRY0+kOhbw==
 
+cloudinary-core@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.npmjs.org/cloudinary-core/-/cloudinary-core-2.13.0.tgz"
+  integrity sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA==
+
+cloudinary@^1.37.3:
+  version "1.37.3"
+  resolved "https://registry.npmjs.org/cloudinary/-/cloudinary-1.37.3.tgz"
+  integrity sha512-XrGb60ZeQhYp9QQjj5DP3cYsAc27OV1B7pezvVxyqgHB5WMeMsofzeIy6+k0o/fCCv744Nf7xsYiTlUi3V0V/Q==
+  dependencies:
+    cloudinary-core "^2.13.0"
+    core-js "^3.30.1"
+    lodash "^4.17.21"
+    q "^1.5.1"
+
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/collection-visit/-/collection-visit-1.0.0.tgz"
@@ -1063,6 +1092,11 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.npmjs.org/copy-descriptor/-/copy-descriptor-0.1.1.tgz"
   integrity sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==
+
+core-js@^3.30.1:
+  version "3.31.1"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-3.31.1.tgz"
+  integrity sha512-2sKLtfq1eFST7l7v62zaqXacPc7uG8ZAya8ogijLhTtaKNcpzpB4TMoTw2Si+8GYKRwFPMMtUT0263QFWFfqyQ==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -2875,7 +2909,7 @@ lodash.merge@^4.6.2:
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
-lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.21:
+lodash@^4.17.14, lodash@^4.17.19, lodash@^4.17.21, lodash@>=4.0:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -3510,6 +3544,11 @@ punycode@^2.1.0:
   version "2.3.0"
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.0.tgz"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
+
+q@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/q/-/q-1.5.1.tgz"
+  integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==
 
 qs@6.11.0:
   version "6.11.0"
