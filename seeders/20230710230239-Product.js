@@ -19,6 +19,19 @@ module.exports = {
           brand_id: 1,
           category_id: 1,
         },
+        {
+          name: 'second Zara T-shirt',
+          tittle: 'Zara T-shirt',
+          description: 'casual T-shirt ',
+          price: 29.99,
+          quantity: 10,
+          rating: 4.4,
+          discount: 0,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          brand_id: 1,
+          category_id: 1,
+        },
       ],
       {}
     );
