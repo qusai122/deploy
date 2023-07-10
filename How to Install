@@ -1,0 +1,6 @@
+npm install --save typescript express body-parser sequelize sequelize-typescript mysql2
+npm install --save-dev nodemon @types/node @types/express
+npm install typescript @types/express nodemon --save-dev
+
+
+npm install --save-dev cross-env
