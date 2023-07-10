@@ -4,8 +4,10 @@ import {
   Column,
   DataType,
   BelongsTo,
+  HasMany,
 } from 'sequelize-typescript';
 import { User } from './User';
+import { UserOrder } from './UserOrder';
 
 @Table({
   timestamps: false,
@@ -57,4 +59,7 @@ export class Address extends Model {
 
   @BelongsTo(() => User, 'user_id')
   user!: User;
+
+  @HasMany(() => UserOrder, 'address_id')
+  userOrders!: UserOrder[];
 }

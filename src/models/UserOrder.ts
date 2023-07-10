@@ -7,6 +7,7 @@ import {
   BelongsTo,
   ForeignKey,
 } from 'sequelize-typescript';
+import { Address } from './Address';
 import { Cart } from './Cart';
 import { User } from './User';
 
@@ -37,4 +38,7 @@ export class UserOrder extends Model {
 
   @BelongsTo(() => Cart, 'cart_id')
   cart!: User;
+
+  @BelongsTo(() => Address, 'address_id')
+  address!: Address;
 }
