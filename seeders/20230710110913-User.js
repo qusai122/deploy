@@ -10,7 +10,7 @@ module.exports = {
           full_name: 'Qusai Issa',
           password: '123456',
           email: 'qusai1@test.com',
-          current_cart_id: null,
+          current_cart_id: 2,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
