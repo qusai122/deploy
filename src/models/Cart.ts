@@ -41,7 +41,7 @@ export class Cart extends Model {
   discount!: number;
 
   @Column({
-    type: DataType.INTEGER,
+    type: DataType.DOUBLE,
     allowNull: true,
     defaultValue: 0,
   })

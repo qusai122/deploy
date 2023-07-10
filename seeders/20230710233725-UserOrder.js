@@ -4,17 +4,16 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert(
-      'cart_items',
+      'user_orders',
       [
         {
-          quantity: 3,
+          email: 'qusai1@test.com',
+          status: 'Ordered',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+          address_id: 1,
           cart_id: 1,
-          product_id: 1,
-        },
-        {
-          quantity: 2,
-          cart_id: 1,
-          product_id: 2,
+          user_id: 1,
         },
       ],
       {}
@@ -28,6 +27,10 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    return queryInterface.bulkDelete('cart_items', { user_id: 1 }, {});
+    return queryInterface.bulkDelete(
+      'user_orders',
+      { user_id: 1, cart_id: 1 },
+      {}
+    );
   },
 };
