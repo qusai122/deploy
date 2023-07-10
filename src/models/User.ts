@@ -44,7 +44,8 @@ export class User extends Model {
 
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
+    //todo:allowNull: false,
+    allowNull: true,
   })
   current_cart_id!: number;
 

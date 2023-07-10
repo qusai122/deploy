@@ -4,3 +4,4 @@ npm install typescript @types/express nodemon --save-dev
 
 
 npm install --save-dev cross-env
+sequelize init
