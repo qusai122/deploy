@@ -13,7 +13,8 @@ export const getLimitedEdition: RequestHandler = async (req, res) => {
     return res.status(500).json(error);
   }
 };
-export const Popular: RequestHandler = async (req, res) => {
+
+export const getPopular: RequestHandler = async (req, res) => {
   req.query.rating = '4.5';
   const filter = createFilter(req.query);
   try {
@@ -23,7 +24,8 @@ export const Popular: RequestHandler = async (req, res) => {
     return res.status(500).json(error);
   }
 };
-export const newArrivals: RequestHandler = async (req, res) => {
+
+export const getNewArrivals: RequestHandler = async (req, res) => {
   req.query.isNew = '1';
   const filter = createFilter(req.query);
   try {
@@ -34,7 +36,7 @@ export const newArrivals: RequestHandler = async (req, res) => {
   }
 };
 
-export const Handpicked: RequestHandler = async (req, res) => {
+export const getHandpicked: RequestHandler = async (req, res) => {
   req.query.handpicked = '1';
   const filter = createFilter(req.query);
   try {
