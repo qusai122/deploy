@@ -69,7 +69,6 @@ function createFilter(query: ParsedQs) {
   const { handpicked } = query;
   const { minPrice } = query;
   const { maxPrice } = query;
-  console.log(query);
 
   let filter = {};
   if (limited == '1') {
@@ -116,6 +115,5 @@ function createFilter(query: ParsedQs) {
       [Op.lte]: maxPrice,
     };
   }
-  console.log(filter);
   return filter;
 }
