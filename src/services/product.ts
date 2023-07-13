@@ -37,9 +37,7 @@ export function createProductFilter(query: ParsedQs) {
     };
   }
   if (isNew == '1') {
-    const currentDate = new Date();
-    const threeMonthsAgo = new Date();
-    threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
+    const threeMonthsAgo = getNewArrivalsEarliestDate();
     filter['createdAt'] = {
       [Op.gte]: threeMonthsAgo,
     };
@@ -58,4 +56,11 @@ export function createProductFilter(query: ParsedQs) {
     };
   }
   return filter;
+}
+
+export function getNewArrivalsEarliestDate() {
+  const date = new Date();
+  date.setMonth(date.getMonth() - 3);
+  console.log(date);
+  return date;
 }
