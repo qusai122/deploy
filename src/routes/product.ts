@@ -5,6 +5,7 @@ import {
   getHandpicked,
   getPopular,
   getNewArrivals,
+  search,
 } from '@controllers/product';
 const router = Router();
 
@@ -13,5 +14,6 @@ router.get('/limited', getLimitedEdition);
 router.get('/handpicked', getHandpicked);
 router.get('/Popular', getPopular);
 router.get('/new', getNewArrivals);
+router.get('/search', search);
 
 export default router;

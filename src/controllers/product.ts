@@ -1,4 +1,5 @@
 import { Product } from '@/models/Product';
+import { Brand } from '@/models/Brand';
 import { createProductFilter, getProductsByFilter } from '@/services/product';
 import { RequestHandler, Request, Response } from 'express';
 const { Op } = require('sequelize');
@@ -51,6 +52,29 @@ export const getProducts: RequestHandler = async (req, res) => {
   try {
     const result = await getProductsByFilter(filter);
     return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json(error);
+  }
+};
+
+export const search: RequestHandler = async (req, res) => {
+  const { keyword } = req.query;
+  try {
+    const products = await Product.findAll({
+      include: [
+        {
+          model: Brand,
+        },
+      ],
+      where: {
+        [Op.or]: [
+          { name: { [Op.like]: `%${keyword}%` } },
+          { '$brand.name$': { [Op.like]: `%${keyword}%` } },
+        ],
+      },
+    });
+
+    return res.status(200).json(products);
   } catch (error) {
     return res.status(500).json(error);
   }
