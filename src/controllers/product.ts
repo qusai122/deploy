@@ -1,11 +1,11 @@
 import { Product } from '@/models/Product';
+import { createProductFilter, getProductsByFilter } from '@/services/product';
 import { RequestHandler, Request, Response } from 'express';
-import { ParsedQs } from 'qs';
 const { Op } = require('sequelize');
 
 export const getLimitedEdition: RequestHandler = async (req, res) => {
   req.query.quantity = '20';
-  const filter = createFilter(req.query);
+  const filter = createProductFilter(req.query);
   try {
     const result = await getProductsByFilter(filter);
     return res.status(200).json(result);
@@ -16,7 +16,7 @@ export const getLimitedEdition: RequestHandler = async (req, res) => {
 
 export const getPopular: RequestHandler = async (req, res) => {
   req.query.rating = '4.5';
-  const filter = createFilter(req.query);
+  const filter = createProductFilter(req.query);
   try {
     const result = await getProductsByFilter(filter);
     return res.status(200).json(result);
@@ -27,7 +27,7 @@ export const getPopular: RequestHandler = async (req, res) => {
 
 export const getNewArrivals: RequestHandler = async (req, res) => {
   req.query.isNew = '1';
-  const filter = createFilter(req.query);
+  const filter = createProductFilter(req.query);
   try {
     const result = await getProductsByFilter(filter);
     return res.status(200).json(result);
@@ -37,8 +37,7 @@ export const getNewArrivals: RequestHandler = async (req, res) => {
 };
 
 export const getHandpicked: RequestHandler = async (req, res) => {
-  req.query.handpicked = '1';
-  const filter = createFilter(req.query);
+  const filter = createProductFilter({ handpicked: '1' });
   try {
     const result = await getProductsByFilter(filter);
     return res.status(200).json(result);
@@ -47,7 +46,7 @@ export const getHandpicked: RequestHandler = async (req, res) => {
   }
 };
 export const getProducts: RequestHandler = async (req, res) => {
-  const filter = createFilter(req.query);
+  const filter = createProductFilter(req.query);
 
   try {
     const result = await getProductsByFilter(filter);
@@ -56,66 +55,3 @@ export const getProducts: RequestHandler = async (req, res) => {
     return res.status(500).json(error);
   }
 };
-
-async function getProductsByFilter(filter) {
-  return await Product.findAll({
-    where: filter,
-  });
-}
-
-function createFilter(query: ParsedQs) {
-  const { limited } = query;
-  const { discount } = query;
-  const { rating } = query;
-  const { isNew } = query;
-  const { handpicked } = query;
-  const { minPrice } = query;
-  const { maxPrice } = query;
-
-  let filter = {};
-  if (limited == '1') {
-    filter['quantity'] = {
-      [Op.lt]: 20,
-    };
-  }
-  if (discount) {
-    filter['discount'] = {
-      [Op.gte]: discount,
-    };
-  }
-  if (rating) {
-    filter['rating'] = {
-      [Op.gte]: rating,
-    };
-  }
-  if (handpicked == '1') {
-    filter['rating'] = {
-      [Op.gte]: 4.5,
-    };
-    filter['price'] = {
-      [Op.lt]: 100,
-    };
-  }
-  if (isNew == '1') {
-    const currentDate = new Date();
-    const threeMonthsAgo = new Date();
-    threeMonthsAgo.setMonth(currentDate.getMonth() - 3);
-    filter['createdAt'] = {
-      [Op.gte]: threeMonthsAgo,
-    };
-  }
-  if (minPrice && maxPrice) {
-    filter['price'] = {
-      [Op.between]: [minPrice, maxPrice],
-    };
-  } else if (minPrice) {
-    filter['price'] = {
-      [Op.gte]: minPrice,
-    };
-  } else if (maxPrice) {
-    filter['price'] = {
-      [Op.lte]: maxPrice,
-    };
-  }
-  return filter;
-}
