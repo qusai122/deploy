@@ -13,13 +13,13 @@ export async function getProductsByFilter(filter) {
 }
 
 export function createProductFilter(query: ParsedQs) {
-  const { limited, discount, rating, isNew, handpicked, minPrice, maxPrice } =
+  const { quantity, discount, rating, isNew, handpicked, minPrice, maxPrice } =
     query;
 
   const filter = {};
-  if (limited == '1') {
+  if (quantity) {
     filter['quantity'] = {
-      [Op.lt]: 20,
+      [Op.lt]: quantity,
     };
   }
   if (discount) {
@@ -65,6 +65,5 @@ export function createProductFilter(query: ParsedQs) {
 export function getNewArrivalsEarliestDate() {
   const date = new Date();
   date.setMonth(date.getMonth() - 3);
-  console.log(date);
   return date;
 }
