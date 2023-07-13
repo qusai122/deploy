@@ -12,7 +12,7 @@ export function createProductFilter(query: ParsedQs) {
   const { limited, discount, rating, isNew, handpicked, minPrice, maxPrice } =
     query;
 
-  let filter = {};
+  const filter = {};
   if (limited == '1') {
     filter['quantity'] = {
       [Op.lt]: 20,
