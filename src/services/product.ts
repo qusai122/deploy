@@ -3,9 +3,13 @@ import { Product } from '@/models/Product';
 import { ParsedQs } from 'qs';
 
 export async function getProductsByFilter(filter) {
-  return await Product.findAll({
-    where: filter,
-  });
+  try {
+    return await Product.findAll({
+      where: filter,
+    });
+  } catch (e) {
+    return e;
+  }
 }
 
 export function createProductFilter(query: ParsedQs) {
