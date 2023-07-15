@@ -1,8 +1,9 @@
-import app from './app';
+import App from '@app';
 import config from './config';
+import envVar from '@validations/envVar';
 
-const { port } = config.server;
+envVar();
 
-app.listen(port, () => {
-  console.log('Server is running on port:', port);
-});
+const app = new App([]);
+
+app.listen();
