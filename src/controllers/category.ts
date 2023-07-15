@@ -15,9 +15,10 @@ export const getAllCategories: RequestHandler = async (req, res) => {
 };
 
 export const getCategoryProducts: RequestHandler = async (req, res) => {
-  const filter = createProductFilter(req.query);
+  const id = req.params.id;
+
   try {
-    const result = await getProductsByFilter(filter);
+    const result = await getProductsByFilter({ category_id: id });
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json(error);
