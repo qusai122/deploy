@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import config from '@config';
 import { Sequelize } from 'sequelize-typescript';
 
@@ -13,7 +13,7 @@ class App {
 
   public dbConnection: Sequelize;
 
-  constructor(routes: any[], dbConnection: Sequelize) {
+  constructor(routes: Router[], dbConnection: Sequelize) {
     this.app = express();
     this.env = nodeEnv || 'development';
     this.port = port || 3000;
