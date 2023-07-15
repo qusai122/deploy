@@ -2,10 +2,10 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-const port = process.env.PORT;
+const { PORT, NODE_ENV } = process.env;
 
 const config = () => {
-  return { port };
+  return { port: PORT, nodeEnv: NODE_ENV };
 };
 
 export default config;
