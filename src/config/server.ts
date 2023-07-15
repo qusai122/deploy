@@ -4,8 +4,9 @@ dotenv.config();
 
 const { PORT, NODE_ENV } = process.env;
 
-const config = () => {
-  return { port: PORT, nodeEnv: NODE_ENV };
-};
+const config = (): Record<string, string> => ({
+  port: PORT,
+  nodeEnv: NODE_ENV,
+});
 
 export default config;

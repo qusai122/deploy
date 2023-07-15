@@ -25,6 +25,7 @@ export class UserOrder extends Model {
     },
   })
   email!: string;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,

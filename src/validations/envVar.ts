@@ -8,7 +8,7 @@ if (process.env.NODE_ENV !== 'production') {
   });
 }
 
-function validateEnv() {
+function validateEnv(): void {
   cleanEnv(process.env, {
     NODE_ENV: str(),
     PORT: port(),

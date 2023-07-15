@@ -1,9 +1,9 @@
 import App from '@app';
-import config from './config';
 import envVar from '@validations/envVar';
+import { dbConnection } from '@database/index';
 
 envVar();
 
-const app = new App([]);
+const app = new App([], dbConnection);
 
 app.listen();

@@ -15,8 +15,6 @@ const development = {
   logging: DB_LOGGING === 'true',
 };
 
-const config = () => {
-  return development;
-};
+const config = (): Record<string, string | boolean> => development;
 
 export default config;
