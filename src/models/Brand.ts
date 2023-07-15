@@ -28,6 +28,9 @@ export class Brand extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: true,
+    validate: {
+      isUrl: true,
+    },
   })
   img!: string;
 
