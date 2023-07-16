@@ -8,6 +8,6 @@ const app = express();
 dbConnection.sync({ alter: false });
 
 app.use('/product', ProductRoutes);
-app.use('/category', CategoryRoutes);
+app.use('/categories', CategoryRoutes);
 
 export default app;
