@@ -15,7 +15,7 @@ export const getBrands: RequestHandler = async (req, res) => {
 };
 
 export const getBrandProducts: RequestHandler = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   try {
     const result = await getProductsByFilter({ brand_id: id });
