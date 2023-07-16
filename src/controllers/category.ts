@@ -1,8 +1,6 @@
-import { Category } from '@/models/Category';
-import { Brand } from '@/models/Brand';
 import { getCategories } from '@/services/category';
-import { RequestHandler, Request, Response } from 'express';
-import { createProductFilter, getProductsByFilter } from '@/services/product';
+import { RequestHandler } from 'express';
+import { getProductsByFilter } from '@/services/product';
 const { Op } = require('sequelize');
 
 export const getAllCategories: RequestHandler = async (req, res) => {
@@ -15,7 +13,7 @@ export const getAllCategories: RequestHandler = async (req, res) => {
 };
 
 export const getCategoryProducts: RequestHandler = async (req, res) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   try {
     const result = await getProductsByFilter({ category_id: id });
