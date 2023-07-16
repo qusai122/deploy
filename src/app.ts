@@ -7,7 +7,7 @@ const app = express();
 
 dbConnection.sync({ alter: false });
 
-app.use('/product', ProductRoutes);
-app.use('/brand', BrandRoutes);
+app.use('/products', ProductRoutes);
+app.use('/brands', BrandRoutes);
 
 export default app;
