@@ -22,6 +22,14 @@ class App {
   }
 
   public listen(): void {
+    process.once('SIGUSR2', function () {
+      process.kill(process.pid, 'SIGUSR2');
+    });
+
+    process.on('SIGINT', function () {
+      // this is only called on ctrl+c, not restart
+      process.kill(process.pid, 'SIGINT');
+    });
     this.app.listen(this.port, () => {
       console.log(`🚀 App listening on the port ${this.port}`);
     });
