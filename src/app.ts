@@ -1,6 +1,9 @@
 import express, { Router } from 'express';
 import { Sequelize } from 'sequelize-typescript';
 import config from '@config';
+import ProductRoutes from '@routes/product';
+import CategoryRoutes from '@routes/category';
+import BrandRoutes from '@routes/brand';
 
 const { port, nodeEnv } = config.server;
 
@@ -19,6 +22,9 @@ class App {
     this.port = port || 3000;
     this.dbConnection = dbConnection;
     this.connectToDatabase();
+    this.app.use('/categories', CategoryRoutes);
+    this.app.use('/products', ProductRoutes);
+    this.app.use('/brands', BrandRoutes);
   }
 
   public listen(): void {

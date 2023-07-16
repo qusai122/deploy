@@ -18,11 +18,13 @@ export function createProductFilter(query: ParsedQs): Record<string, object> {
     query;
 
   const filter = {};
+
   if (quantity) {
     filter['quantity'] = {
       [Op.lt]: quantity,
     };
   }
+
   if (discount) {
     filter['discount'] = {
       [Op.gte]: discount,
@@ -60,6 +62,7 @@ export function createProductFilter(query: ParsedQs): Record<string, object> {
       [Op.lte]: maxPrice,
     };
   }
+  console.log(filter);
   return filter;
 }
 
