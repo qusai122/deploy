@@ -1,4 +1,4 @@
-import { getProductsByFilter } from '@/services/product';
+import { createProductFilter, getProductsByFilter } from '@/services/product';
 import { getAllBrands } from '@/services/brand';
 import { RequestHandler, Request, Response } from 'express';
 
@@ -19,9 +19,11 @@ export const getBrandProducts: RequestHandler = async (
   res: Response
 ) => {
   const { id } = req.params;
+  req.query.brand_id = id;
+  const filter = createProductFilter(req.query);
 
   try {
-    const result = await getProductsByFilter({ brand_id: id });
+    const result = await getProductsByFilter(filter);
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json(error);

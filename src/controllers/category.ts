@@ -1,6 +1,6 @@
 import { getCategories } from '@/services/category';
 import { Request, RequestHandler, Response } from 'express';
-import { getProductsByFilter } from '@/services/product';
+import { createProductFilter, getProductsByFilter } from '@/services/product';
 const { Op } = require('sequelize');
 
 export const getAllCategories: RequestHandler = async (
@@ -20,9 +20,11 @@ export const getCategoryProducts: RequestHandler = async (
   res: Response
 ) => {
   const { id } = req.params;
+  req.query.category_id = id;
+  const filter = createProductFilter(req.query);
 
   try {
-    const result = await getProductsByFilter({ category_id: id });
+    const result = await getProductsByFilter(filter);
     return res.status(200).json(result);
   } catch (error) {
     return res.status(500).json(error);
