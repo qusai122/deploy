@@ -1,8 +1,9 @@
 const { Op } = require('sequelize');
 import { Product } from '@/models/Product';
 import { ParsedQs } from 'qs';
+import { WhereOptions } from 'sequelize';
 
-export async function getProductsByFilter(filter) {
+export async function getProductsByFilter(filter: WhereOptions) {
   try {
     return await Product.findAll({
       where: filter,
@@ -21,8 +22,8 @@ export function createProductFilter(query: ParsedQs) {
     handpicked,
     minPrice,
     maxPrice,
-    brand_id,
-    category_id,
+    //brand_id,
+    //category_id,
   } = query;
 
   const filter = {};
@@ -70,7 +71,6 @@ export function createProductFilter(query: ParsedQs) {
       [Op.lte]: maxPrice,
     };
   }
-  console.log(filter);
   return filter;
 }
 

@@ -1,11 +1,11 @@
-import { Product } from '@/models/Product';
-import { Brand } from '@/models/Brand';
-import { createProductFilter, getProductsByFilter } from '@/services/product';
+import { getProductsByFilter } from '@/services/product';
 import { getAllBrands } from '@/services/brand';
 import { RequestHandler, Request, Response } from 'express';
-const { Op } = require('sequelize');
 
-export const getBrands: RequestHandler = async (req, res) => {
+export const getBrands: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
   try {
     const result = await getAllBrands();
     return res.status(200).json(result);
@@ -14,7 +14,10 @@ export const getBrands: RequestHandler = async (req, res) => {
   }
 };
 
-export const getBrandProducts: RequestHandler = async (req, res) => {
+export const getBrandProducts: RequestHandler = async (
+  req: Request,
+  res: Response
+) => {
   const { id } = req.params;
 
   try {
