@@ -5,11 +5,9 @@ import {
   DataType,
   BelongsTo,
   HasMany,
-  ForeignKey,
   HasOne,
 } from 'sequelize-typescript';
 import { CartItem } from './CartItem';
-import { Product } from './Product';
 import { User } from './User';
 import { UserOrder } from './UserOrder';
 

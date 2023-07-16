@@ -1,7 +1,6 @@
 import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
 import { Address } from './Address';
 import { Cart } from './Cart';
-import { Favorite } from './Favorite';
 import { UserOrder } from './UserOrder';
 
 @Table({

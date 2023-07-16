@@ -1,13 +1,10 @@
-import { HasOne } from 'sequelize';
 import {
   Table,
   Model,
   Column,
   DataType,
-  ForeignKey,
   BelongsTo,
   HasMany,
-  BelongsToMany,
 } from 'sequelize-typescript';
 import { Brand } from './Brand';
 import { CartItem } from './CartItem';
