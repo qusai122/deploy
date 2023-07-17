@@ -3,6 +3,7 @@ import {
   Model,
   Column,
   DataType,
+  ForeignKey,
   BelongsTo,
 } from 'sequelize-typescript';
 import { Product } from './Product';
@@ -15,9 +16,6 @@ export class ProductImage extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
-    validate: {
-      isUrl: true,
-    },
   })
   src!: string;
 

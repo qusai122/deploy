@@ -5,9 +5,11 @@ import {
   DataType,
   BelongsTo,
   HasMany,
+  ForeignKey,
   HasOne,
 } from 'sequelize-typescript';
 import { CartItem } from './CartItem';
+import { Product } from './Product';
 import { User } from './User';
 import { UserOrder } from './UserOrder';
 
@@ -28,9 +30,6 @@ export class Cart extends Model {
   @Column({
     type: DataType.DOUBLE,
     allowNull: false,
-    validate: {
-      min: 0,
-    },
   })
   sub_total!: number;
 
@@ -38,21 +37,13 @@ export class Cart extends Model {
     type: DataType.DOUBLE,
     allowNull: true,
     defaultValue: 0,
-    validate: {
-      max: 100,
-      min: 0,
-    },
   })
   discount!: number;
 
   @Column({
-    type: DataType.DOUBLE,
+    type: DataType.INTEGER,
     allowNull: true,
-    defaultValue: 12.5,
-    validate: {
-      max: 200,
-      min: 0,
-    },
+    defaultValue: 0,
   })
   delivery_fee!: number;
 

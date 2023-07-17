@@ -1,14 +1,10 @@
+import { Product } from '@/models/Product';
+import { Brand } from '@/models/Brand';
+import { createProductFilter, getProductsByFilter } from '@/services/product';
 import { RequestHandler, Request, Response } from 'express';
-import { Op } from 'sequelize';
+const { Op } = require('sequelize');
 
-import { Product } from '@models/Product';
-import { Brand } from '@models/Brand';
-import { createProductFilter, getProductsByFilter } from '@services/product';
-
-export const getLimitedEdition: RequestHandler = async (
-  req: Request,
-  res: Response
-) => {
+export const getLimitedEdition: RequestHandler = async (req, res) => {
   req.query.quantity = '20';
   const filter = createProductFilter(req.query);
   try {
@@ -19,10 +15,7 @@ export const getLimitedEdition: RequestHandler = async (
   }
 };
 
-export const getPopular: RequestHandler = async (
-  req: Request,
-  res: Response
-) => {
+export const getPopular: RequestHandler = async (req, res) => {
   req.query.rating = '4.5';
   const filter = createProductFilter(req.query);
   try {
@@ -33,10 +26,7 @@ export const getPopular: RequestHandler = async (
   }
 };
 
-export const getNewArrivals: RequestHandler = async (
-  req: Request,
-  res: Response
-) => {
+export const getNewArrivals: RequestHandler = async (req, res) => {
   req.query.isNew = '1';
   const filter = createProductFilter(req.query);
   try {
@@ -47,10 +37,7 @@ export const getNewArrivals: RequestHandler = async (
   }
 };
 
-export const getHandpicked: RequestHandler = async (
-  req: Request,
-  res: Response
-) => {
+export const getHandpicked: RequestHandler = async (req, res) => {
   const filter = createProductFilter({ handpicked: '1' });
   try {
     const result = await getProductsByFilter(filter);
@@ -59,10 +46,7 @@ export const getHandpicked: RequestHandler = async (
     return res.status(500).json(error);
   }
 };
-export const getProducts: RequestHandler = async (
-  req: Request,
-  res: Response
-) => {
+export const getProducts: RequestHandler = async (req, res) => {
   const filter = createProductFilter(req.query);
 
   try {
@@ -73,7 +57,7 @@ export const getProducts: RequestHandler = async (
   }
 };
 
-export const search: RequestHandler = async (req: Request, res: Response) => {
+export const search: RequestHandler = async (req, res) => {
   const { keyword } = req.query;
   try {
     const products = await Product.findAll({

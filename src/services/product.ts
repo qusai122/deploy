@@ -1,9 +1,8 @@
-import { Op } from 'sequelize';
+const { Op } = require('sequelize');
+import { Product } from '@/models/Product';
 import { ParsedQs } from 'qs';
 
-import { Product } from '@models/Product';
-
-export async function getProductsByFilter(filter): Promise<Product[]> {
+export async function getProductsByFilter(filter) {
   try {
     return await Product.findAll({
       where: filter,
@@ -13,9 +12,18 @@ export async function getProductsByFilter(filter): Promise<Product[]> {
   }
 }
 
-export function createProductFilter(query: ParsedQs): Record<string, object> {
-  const { quantity, discount, rating, isNew, handpicked, minPrice, maxPrice } =
-    query;
+export function createProductFilter(query: ParsedQs) {
+  const {
+    quantity,
+    discount,
+    rating,
+    isNew,
+    handpicked,
+    minPrice,
+    maxPrice,
+    brand_id,
+    category_id,
+  } = query;
 
   const filter = {};
 
@@ -66,7 +74,7 @@ export function createProductFilter(query: ParsedQs): Record<string, object> {
   return filter;
 }
 
-export function getNewArrivalsEarliestDate(): Date {
+export function getNewArrivalsEarliestDate() {
   const date = new Date();
   date.setMonth(date.getMonth() - 3);
   return date;
