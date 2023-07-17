@@ -22,6 +22,10 @@ export class CartItem extends Model {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
+    validate: {
+      max: 100,
+      min: 1,
+    },
   })
   quantity!: number;
 }
