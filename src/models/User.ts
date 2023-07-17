@@ -1,16 +1,6 @@
-import {
-  Table,
-  Model,
-  Column,
-  DataType,
-  BelongsTo,
-  HasOne,
-  HasMany,
-  ForeignKey,
-} from 'sequelize-typescript';
+import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
 import { Address } from './Address';
 import { Cart } from './Cart';
-import { Favorite } from './Favorite';
 import { UserOrder } from './UserOrder';
 
 @Table({
@@ -21,12 +11,28 @@ export class User extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    validate: {
+      len: [2, 50],
+    },
   })
-  full_name!: string;
+  first_name!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    validate: {
+      len: [2, 50],
+    },
+  })
+  last_name!: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+    validate: {
+      min: 8,
+      isAlphanumeric: true,
+    },
   })
   password!: string;
 

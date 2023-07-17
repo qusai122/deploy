@@ -20,8 +20,10 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "baseUrl": "./src",
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["*"],
+      "@app": ["app"],
       "@config": ["config"],
       "@controllers/*": ["controllers/*"],
       "@database/*": ["database/*"],
@@ -31,7 +33,8 @@
       "@models/*": ["models/*"],
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@validations/*": ["validations/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.json", ".env"],
