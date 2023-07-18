@@ -1,4 +1,12 @@
-import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
+import {
+  Table,
+  Model,
+  Column,
+  DataType,
+  HasMany,
+  BelongsTo,
+  ForeignKey,
+} from 'sequelize-typescript';
 import { Product } from './Product';
 
 @Table({
@@ -23,10 +31,10 @@ export class Category extends Model {
     allowNull: true,
   })
   img!: string;
-  // todo
-  // instead of creating sub category
-  // @BelongsTo(() => Category, 'parent_category_id')
-  // user!: Category;
+  //todo
+  //instead of creating sub category
+  //@BelongsTo(() => Category, 'parent_category_id')
+  //user!: Category;
 
   @HasMany(() => Product, 'category_id')
   products!: Product[];

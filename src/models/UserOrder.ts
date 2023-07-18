@@ -1,9 +1,11 @@
 import {
+  HasOne,
   Model,
   Table,
   Column,
   DataType,
   BelongsTo,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { Cart } from './Cart';
 import { User } from './User';
@@ -23,7 +25,6 @@ export class UserOrder extends Model {
     },
   })
   email!: string;
-
   @Column({
     type: DataType.STRING,
     allowNull: false,

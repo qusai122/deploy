@@ -5,6 +5,7 @@ import {
   DataType,
   BelongsTo,
   HasMany,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { Product } from './Product';
 import { Variant } from './Variant';
