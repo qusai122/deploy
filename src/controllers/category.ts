@@ -22,3 +22,4 @@ export const getCategoryProducts: RequestHandler = async (req, res) => {
     return res.status(500).json(error);
   }
 };
+//hi
