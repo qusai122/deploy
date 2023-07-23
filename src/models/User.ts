@@ -87,6 +87,9 @@ export class User extends Model {
   @HasMany(() => UserOrder, 'user_id')
   user_orders!: UserOrder[];
 
+  @HasMany(() => Address, 'user_id')
+  addresses!: Address[];
+  
   @BeforeCreate
   @BeforeUpdate
   static async hashPassword(user: User): Promise<void> {
