@@ -29,6 +29,9 @@ export class Cart extends Model {
     field: 'sub_total',
     type: DataType.DOUBLE,
     allowNull: false,
+    validate: {
+      min: 0,
+    },
   })
   subTotal!: number;
 
@@ -44,10 +47,16 @@ export class Cart extends Model {
   discount!: number;
 
   @Column({
+
     field: 'delivery_fee',
-    type: DataType.INTEGER,
+    type: DataType.DOUBLE,
+
     allowNull: true,
-    defaultValue: 0,
+    defaultValue: 12.5,
+    validate: {
+      max: 200,
+      min: 0,
+    },
   })
   deliveryFee!: number;
 
