@@ -34,7 +34,11 @@ export class CartItem extends Model {
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
-    defaultValue: 0,
+    defaultValue: 1,
+    validate: {
+      max: 100,
+      min: 1,
+    },
   })
   quantity!: number;
 
