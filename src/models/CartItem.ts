@@ -4,7 +4,6 @@ import {
   Column,
   DataType,
   BelongsTo,
-  HasOne,
   ForeignKey,
 } from 'sequelize-typescript';
 import { Cart } from './Cart';
@@ -35,6 +34,10 @@ export class CartItem extends Model {
     type: DataType.INTEGER,
     allowNull: false,
     defaultValue: 0,
+    validate: {
+      max: 100,
+      min: 1,
+    },
   })
   quantity!: number;
 
