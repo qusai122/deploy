@@ -1,9 +1,20 @@
-import express, { Router } from 'express';
+import express from 'express';
+import compression from 'compression';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
 import { Sequelize } from 'sequelize-typescript';
+
 import config from '@config';
-import ProductRoutes from '@routes/product';
-import CategoryRoutes from '@routes/category';
-import BrandRoutes from '@routes/brand';
+import envVar from '@validations/envVar';
+import {
+  BrandRouters,
+  CartItemsRouters,
+  CartRouters,
+  CategoryRouters,
+  ProductRouters,
+  UserRouters,
+} from '@routes/index';
+import { notFound, serverError } from '@middlewares/index';
 
 const { port, nodeEnv } = config.server;
 
@@ -16,15 +27,16 @@ class App {
 
   public dbConnection: Sequelize;
 
-  constructor(routes: Router[], dbConnection: Sequelize) {
+  constructor(dbConnection: Sequelize) {
     this.app = express();
+    envVar();
     this.env = nodeEnv || 'development';
     this.port = port || 3000;
+
     this.dbConnection = dbConnection;
     this.connectToDatabase();
-    this.app.use('/categories', CategoryRoutes);
-    this.app.use('/products', ProductRoutes);
-    this.app.use('/brands', BrandRoutes);
+
+    this.initializeMiddlewares();
   }
 
   public listen(): void {
@@ -41,12 +53,30 @@ class App {
     });
   }
 
+  private initializeMiddlewares(): void {
+    this.app.use(cors({ origin: '*' }));
+    this.app.use(compression());
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(cookieParser());
+
+    // app routers middleware
+    this.app.use('/categories', CategoryRouters);
+    this.app.use('/products', ProductRouters);
+    this.app.use('/brands', BrandRouters);
+    this.app.use('/carts', CartRouters);
+    this.app.use('/cart-items', CartItemsRouters);
+    this.app.use('/users', UserRouters);
+    // Error middleware
+    this.app.use([notFound, serverError]);
+  }
+
   public getServer(): express.Application {
     return this.app;
   }
 
   private connectToDatabase(): void {
-    this.dbConnection.sync({ force: false });
+    this.dbConnection.sync({ force: false, alter: false });
   }
 }
 
