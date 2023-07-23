@@ -18,6 +18,7 @@ function validateEnv(): void {
     DB_PASS: str(),
     DB_NAME: str(),
     DB_LOGGING: str(),
+    JWT_SECRET: str(),
   });
 }
 
