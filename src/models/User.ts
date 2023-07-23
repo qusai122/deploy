@@ -9,6 +9,7 @@ import {
   CreatedAt,
   Sequelize,
   UpdatedAt,
+  ForeignKey
 } from 'sequelize-typescript';
 import { hashPassword } from '@utils/hashPassword';
 import { Address } from './Address';
