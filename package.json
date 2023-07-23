@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "yarn run build:tsc && cross-env NODE_ENV=production node dist/index.js",
+    "start": "npm run build:tsc && cross-env NODE_ENV=production node dist/index.js",
     "dev": "cross-env NODE_ENV=development nodemon",
     "build:tsc": "tsc && tsc-alias",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
@@ -32,7 +32,8 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.32.1",
     "sequelize-cli": "^6.6.1",
-    "sequelize-typescript": "^2.1.5"
+    "sequelize-typescript": "^2.1.5",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@types/compression": "^1.7.2",

@@ -47,6 +47,7 @@ export class Cart extends Model {
   discount!: number;
 
   @Column({
+    field: 'delivery_fee',
     type: DataType.DOUBLE,
     allowNull: true,
     defaultValue: 12.5,
