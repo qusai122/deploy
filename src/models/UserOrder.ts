@@ -31,8 +31,25 @@ export class UserOrder extends Model {
   })
   status!: string;
 
+  @ForeignKey(() => User)
+  @Column({
+    field: 'user_id',
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  userId!: number;
+
   @BelongsTo(() => User, 'user_id')
   user!: User;
+
+
+  @ForeignKey(() => Cart)
+  @Column({
+    field: 'cart_id',
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  cartId!: number;
 
   @BelongsTo(() => Cart, 'cart_id')
   cart!: User;
