@@ -63,6 +63,11 @@ export class Address extends Model {
     defaultValue: false,
   })
   is_default!: boolean;
-
+@BelongsTo(() => User, {
+    onDelete: 'NULL',
+    onUpdate: 'CASCADE',
+    foreignKey: 'user_id',
+  })
+  user!: User[];
   
 }
