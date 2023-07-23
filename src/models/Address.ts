@@ -64,4 +64,15 @@ export class Address extends Model {
   })
   is_default!: boolean;
 
+  @ForeignKey(() => User)
+  @Column({
+    field: 'user_id',
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  userId!: number;
+
+  @BelongsTo(() => User, 'user_id')
+  user!: User;
+
 }
