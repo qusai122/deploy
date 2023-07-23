@@ -4,6 +4,7 @@ import {
   Column,
   DataType,
   BelongsTo,
+  ForeignKey
 } from 'sequelize-typescript';
 import { User } from './User';
 
