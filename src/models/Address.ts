@@ -64,8 +64,4 @@ export class Address extends Model {
   })
   is_default!: boolean;
 
-  @BelongsTo(() => User, {
-    foreignKey: 'user_id',
-  })
-  user!: User[];
 }
