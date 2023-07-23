@@ -2,11 +2,13 @@ import { Op } from 'sequelize';
 import { ParsedQs } from 'qs';
 
 import { Product } from '@models/Product';
+import { ProductImage } from '@/models/ProductsImage';
 
 export async function getProductsByFilter(filter): Promise<Product[]> {
   try {
     return await Product.findAll({
       where: filter,
+      include: ProductImage,
     });
   } catch (e) {
     return e;

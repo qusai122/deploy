@@ -27,6 +27,10 @@ export class ProductImage extends Model {
   })
   alt!: string;
 
-  @BelongsTo(() => Product, 'product_id')
+  @BelongsTo(() => Product, {
+    onDelete: 'NULL',
+    onUpdate: 'CASCADE',
+    foreignKey: 'product_id',
+  })
   product!: Product[];
 }

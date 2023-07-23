@@ -6,33 +6,34 @@ import {
   BelongsTo,
   HasMany,
   HasOne,
+  ForeignKey,
 } from 'sequelize-typescript';
 import { CartItem } from './CartItem';
 import { User } from './User';
 import { UserOrder } from './UserOrder';
 
 @Table({
-  timestamps: true,
+  timestamps: false,
   tableName: 'carts',
 })
 export class Cart extends Model {
-  @BelongsTo(() => User, 'user_id')
-  user!: User;
-
-  @HasMany(() => CartItem, 'cart_id')
-  cart_items!: CartItem[];
-
-  @HasOne(() => UserOrder, 'cart_id')
-  userOrder!: UserOrder[];
+  @ForeignKey(() => User)
+  @Column({
+    field: 'user_id',
+    type: DataType.INTEGER,
+    allowNull: false,
+  })
+  userId!: number;
 
   @Column({
+    field: 'sub_total',
     type: DataType.DOUBLE,
     allowNull: false,
     validate: {
       min: 0,
     },
   })
-  sub_total!: number;
+  subTotal!: number;
 
   @Column({
     type: DataType.DOUBLE,
@@ -46,6 +47,7 @@ export class Cart extends Model {
   discount!: number;
 
   @Column({
+    field: 'delivery_fee',
     type: DataType.DOUBLE,
     allowNull: true,
     defaultValue: 12.5,
@@ -54,12 +56,22 @@ export class Cart extends Model {
       min: 0,
     },
   })
-  delivery_fee!: number;
+  deliveryFee!: number;
 
   @Column({
+    field: 'is_ordered',
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: false,
   })
-  is_ordered!: boolean;
+  isOrdered!: boolean;
+
+  @BelongsTo(() => User)
+  user!: User;
+
+  @HasMany(() => CartItem, 'cart_id')
+  items!: CartItem[];
+
+  @HasOne(() => UserOrder, 'cart_id')
+  userOrder!: UserOrder[];
 }

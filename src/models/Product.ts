@@ -5,6 +5,9 @@ import {
   DataType,
   BelongsTo,
   HasMany,
+  CreatedAt,
+  UpdatedAt,
+  Sequelize,
 } from 'sequelize-typescript';
 import { Brand } from './Brand';
 import { CartItem } from './CartItem';
@@ -37,7 +40,7 @@ export class Product extends Model {
   sub_title!: string;
 
   @Column({
-    type: DataType.STRING,
+    type: DataType.TEXT,
     allowNull: false,
     validate: {
       len: [20, 500],
@@ -72,6 +75,18 @@ export class Product extends Model {
     },
   })
   rating!: number;
+
+  @CreatedAt
+  @Column({
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+  })
+  createdAt!: Date;
+
+  @UpdatedAt
+  @Column({
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
+  })
+  updatedAt?: Date;
 
   @Column({
     type: DataType.DOUBLE,
