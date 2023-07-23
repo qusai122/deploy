@@ -1,8 +1,9 @@
-import app from './app';
-import config from './config';
+import App from '@app';
+import envVar from '@validations/envVar';
+import { dbConnection } from '@database/index';
 
-const { port } = config.server;
+envVar();
 
-app.listen(port, () => {
-  console.log('Server is running on port:', port);
-});
+const app = new App([], dbConnection);
+
+app.listen();
