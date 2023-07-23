@@ -66,9 +66,6 @@ export class Address extends Model {
 
   @BelongsTo(() => User, {
     foreignKey: 'user_id',
-    onDelete: 'NULL',
-    onUpdate: 'CASCADE',
-    
   })
   user!: User[];
 }
